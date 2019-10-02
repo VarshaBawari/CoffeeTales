@@ -7,54 +7,10 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View ,NativeModules} from 'react-native';
-import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { Provider } from 'react-redux';
 import { store, persistor } from './src/store/store';
-
-// const {CountriesParsor} = NativeModules
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
-
-class Counter extends Component {
-  componentDidMount(){
-    NativeModules.CountriesParsor.getCountries((countries)=>{
-      console.log("countries=========>",countries);
-      
-    })
-    NativeModules.CountriesParsor.getCitiesFor("Afghanistan",(cities)=>{
-      console.log("cities=========>",cities);
-      
-    })
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!098765432166868668969</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
-    );
-  }
-}
-
-const AppNavigator = createStackNavigator({
-  // InfoScreen: { screen: Info },
-  Counter: { screen: Counter },
-  // DashboardScreen: { screen: Dashboard },
-  // LoginScreen: { screen: Login }
-}, {
-  headerMode: 'none',
-  initialRouteName: 'Counter',
-  animationEnabled: true,
-});
-
-const AppContainer = createAppContainer(AppNavigator);
+import { AppContainer } from './src/navigation/RootNavigator'
 
 export default class App extends Component {
   render() {
@@ -69,22 +25,3 @@ export default class App extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});

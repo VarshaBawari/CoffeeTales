@@ -5,7 +5,7 @@ import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 
 // Imports: Redux
-import rootReducer from '../src/reducers/index';
+import rootReducer from '../reducers/index';
 
 // Middleware: Redux Thunk (Async/Await)
 const middleware = [thunk];
@@ -24,6 +24,7 @@ const persistConfig = {
   // Blacklist (Don't Save Specific Reducers)
   blacklist: [
     'counterReducer',
+    'splashReducer'
   ],
 };
 

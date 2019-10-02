@@ -1,4 +1,4 @@
-import { APP_LOADING, APP_LOADED } from './action';
+import { APP_LOADING, APP_LOADED } from '../screens/splash/redux/action';
 
 const splashInitialState = {
     loadingAppData: false,
