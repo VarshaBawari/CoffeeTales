@@ -7,12 +7,13 @@
  */
 
 import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View ,NativeModules} from 'react-native';
 import { createAppContainer, createStackNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { Provider } from 'react-redux';
 import { store, persistor } from './src/store/store';
 
+// const {CountriesParsor} = NativeModules
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -21,10 +22,20 @@ const instructions = Platform.select({
 });
 
 class Counter extends Component {
+  componentDidMount(){
+    NativeModules.CountriesParsor.getCountries((countries)=>{
+      console.log("countries=========>",countries);
+      
+    })
+    NativeModules.CountriesParsor.getCitiesFor("Afghanistan",(cities)=>{
+      console.log("cities=========>",cities);
+      
+    })
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!0987654321</Text>
+        <Text style={styles.welcome}>Welcome to React Native!098765432166868668969</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
