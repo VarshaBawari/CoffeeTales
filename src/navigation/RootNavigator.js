@@ -5,7 +5,6 @@ import Login from '../screens/login'
 import Splash from '../screens/splash'
 import Registeration from '../screens/registeration'
 
-
 const AppNavigator = createStackNavigator({
     Info: { screen: Info },
     Login: { screen: Login },
@@ -19,5 +18,4 @@ const AppNavigator = createStackNavigator({
 });
 
 const AppContainer = createAppContainer(AppNavigator);
-
 export { AppContainer }

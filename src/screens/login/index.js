@@ -37,7 +37,7 @@ class LoginScreen extends Component {
                             CoffeeTales
                         </Text>
                         <Text style={{ ...styles.subTitleLabel }}>
-                            Brewing now...
+                            Celebrating the Joy of Coffee
                         </Text>
                         <TextInput
                             style={styles.input}
@@ -56,7 +56,10 @@ class LoginScreen extends Component {
                         <View style={{ ...styles.submitBtn, backgroundColor: this.props.authenticating ? "#b88e72" : "#5e422f" }}>
 
                             <TouchableOpacity onPress={() => {
-                                this.props.authenticate(this.state.userName, this.state.password)
+                                // this.props.navigation.navigate('Info')
+                                this.props.navigation.navigate('Dashboard')
+
+                                // this.props.authenticate(this.state.userName, this.state.password)
                             }} disabled={this.props.authenticating}>
                                 <Text style={styles.submitBtnLabel}>
                                     Login

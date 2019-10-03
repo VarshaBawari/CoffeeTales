@@ -1,9 +1,7 @@
 import { APP_LOADING, APP_LOADED } from '../screens/splash/redux/action';
-
 const splashInitialState = {
     loadingAppData: false,
 }
-
 function splashReducer(state = splashInitialState, action) {
 
     switch (action.type) {
@@ -15,5 +13,4 @@ function splashReducer(state = splashInitialState, action) {
             return state;
     }
 }
-
 export default splashReducer;

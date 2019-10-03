@@ -1,5 +1,4 @@
 import { LOGGED_IN, AUTHENTICATING, AUTH_ERROR, CLEAR_AUTH_ERROR } from '../screens/login/redux/action';
-
 const authInitialState = {
   loggedIn: false,
   authenticating: false,
@@ -16,9 +15,6 @@ const authReducer = (state = authInitialState, action) => {
       }
     }
     case LOGGED_IN: {
-      console.log('action====================================');
-      console.log(action);
-      console.log('====================================');
       return {
         ...state,
         authenticating: false,
@@ -27,7 +23,6 @@ const authReducer = (state = authInitialState, action) => {
       }
     }
     case AUTH_ERROR: {
-
       return {
         ...state,
         authenticating: false,
