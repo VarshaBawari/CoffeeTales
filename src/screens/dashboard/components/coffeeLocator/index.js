@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { ImageBackground, View, Text, SafeAreaView, StatusBar, Animated, Dimensions, TextInput, TouchableOpacity, Image } from 'react-native';
 
-export default class CoffeeLocator extends Component {
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { getNearByCafes } from './redux/dispatcher'
+class CoffeeLocator extends Component {
     constructor(props) {
         super(props);
 
+    }
+
+    componentDidMount() {
+        this.props.getNearByCafes()
     }
 
     render() {
@@ -17,3 +24,23 @@ export default class CoffeeLocator extends Component {
         )
     }
 }
+
+
+
+const mapStateToProps = (state) => {
+    return {
+        loadingNearByCafes: state.nearByCafeReducer.loadingNearByCafes,
+        nearByCafes: state.nearByCafeReducer.nearByCafes,
+        errorMessageNearByCafes: state.nearByCafeReducer.errorMessageNearByCafes,
+        isSearchingNearByCafes: state.nearByCafeReducer.isSearchingNearByCafes,
+        loadingNearByCafeSearch: state.nearByCafeReducer.loadingNearByCafeSearch,
+        searchedNearByCafes: state.nearByCafeReducer.searchedNearByCafes,
+        errorMessageNearByCafeSearch: state.nearByCafeReducer.errorMessageNearByCafeSearch
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators({ getNearByCafes }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CoffeeLocator)

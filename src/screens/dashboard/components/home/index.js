@@ -29,7 +29,7 @@ class Home extends Component {
     _handleTextReady = () => {
         // ...
     }
-    _keyExtractor = (item, index) => { index.toString() };
+    _keyExtractor = (item, index) => { item.title };
     _renderTruncatedFooter = (handlePress) => {
         return (
             <Text style={{ color: "#335569", marginTop: 5, textAlign: "right", marginBottom: 15, fontWeight: "bold" }} onPress={handlePress}>
@@ -134,7 +134,7 @@ class Home extends Component {
 
 
 const mapStateToProps = (state) => {
-    return { stories: state.dataReducer.stories }
+    return { stories: state.storyReducer.stories }
 }
 
 const mapDispatchToProps = (dispatch) => {

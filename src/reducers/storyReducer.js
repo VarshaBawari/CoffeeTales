@@ -4,7 +4,7 @@ const dataInitialState = {
     stories: [],
     errorMessage: ""
 }
-function dataReducer(state = dataInitialState, action) {
+function storyReducer(state = dataInitialState, action) {
 
     switch (action.type) {
         case GET_STORIES:
@@ -17,4 +17,4 @@ function dataReducer(state = dataInitialState, action) {
             return state;
     }
 }
-export default dataReducer;
+export default storyReducer;

@@ -2,13 +2,15 @@ import { combineReducers } from 'redux';
 import authReducer from './authReducer';
 import splashReducer from './splashReducer'
 import userRegisterationReducer from './userRegistrationReducer'
-import dataReducer from './dataReducer'
+import storyReducer from './storyReducer'
+import nearByCafeReducer from './nearByCafeReducer'
 
 const rootReducer = combineReducers({
   authReducer: authReducer,
   splashReducer: splashReducer,
   userRegisterationReducer: userRegisterationReducer,
-  dataReducer: dataReducer
+  storyReducer: storyReducer,
+  nearByCafeReducer: nearByCafeReducer
 });
 
 export default rootReducer;
