@@ -14,6 +14,7 @@ class Home extends Component {
             storiesList: this.props.stories
         }
     }
+
     componentDidMount() {
         this.props.getStories()
     }
@@ -29,7 +30,7 @@ class Home extends Component {
     _handleTextReady = () => {
         // ...
     }
-    _keyExtractor = (item, index) => { item.title };
+    _keyExtractor = (item, index) => { "stories+" + index + "-" + item.name + Date() };
     _renderTruncatedFooter = (handlePress) => {
         return (
             <Text style={{ color: "#335569", marginTop: 5, textAlign: "right", marginBottom: 15, fontWeight: "bold" }} onPress={handlePress}>
@@ -81,7 +82,8 @@ class Home extends Component {
                         style={{ backgroundColor: "transparent", marginVertical: 20 }}
                         data={this.state.storiesList}
                         keyExtractor={(this._keyExtractor.bind(this))}
-                        renderItem={({ item }) => {
+                        initialNumToRender={2}
+                        renderItem={({ item, index }) => {
                             return (
                                 <View style={{ backgroundColor: "white", marginBottom: 20, borderRadius: 10, }}>
 

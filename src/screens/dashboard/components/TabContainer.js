@@ -24,8 +24,6 @@ const Tabs = createMaterialTopTabNavigator({
         screen: Locator,
         navigationOptions: {
             tabBarIcon: ({ focused, tintColor }) => {
-                // const iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-                // return <Ionicons name={iconName} size={25} color={tintColor} />;
                 return <Image source={require('../../../assets/ic_shop.png')} style={{ width: 20, height: 20, tintColor: focused ? "white" : "gray" }} />
 
             },
@@ -35,7 +33,6 @@ const Tabs = createMaterialTopTabNavigator({
         screen: CoffeePedia,
         navigationOptions: {
             tabBarIcon: ({ focused, tintColor }) => {
-
                 return <Image source={require('../../../assets/ic_coffee.png')} style={{ width: 20, height: 20, tintColor: focused ? "white" : "gray" }} />
 
             },
@@ -54,6 +51,7 @@ const Tabs = createMaterialTopTabNavigator({
 
 }, {
     initialRouteName: "Coffee Room",
+    'lazy': true,
     tabBarOptions: {
         showIcon: true,
         showLabel: false,

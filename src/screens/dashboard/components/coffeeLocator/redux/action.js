@@ -5,6 +5,7 @@ export const GET_NEAR_BY_CAFE_SEARCHES = 'GET_NEAR_BY_CAFE_SEARCHES';
 export const GET_NEAR_BY_CAFE_SEARCHES_ERROR = 'GET_NEAR_BY_CAFE_SEARCHES_ERROR';
 export const SET_NEAR_BY_CAFE_SEARCHES = 'SET_NEAR_BY_CAFE_SEARCHES';
 export const SET_IS_SEARCHING = 'SET_IS_SEARCHING';
+export const SHOW_DETAILED_VIEW = 'SHOW_DETAILED_VIEW';
 
 
 export function loadNearByCafes() {
@@ -14,10 +15,10 @@ export function loadNearByCafes() {
 }
 
 
-export function saveNearByCafes(value) {
+export function saveNearByCafes(results) {
     return {
         type: SET_NEAR_BY_CAFES,
-        value
+        results
     }
 }
 
@@ -38,10 +39,10 @@ export function loadNearByCafeSearches() {
 }
 
 
-export function saveNearByCafeSearches(value) {
+export function saveNearByCafeSearches(results) {
     return {
         type: SET_NEAR_BY_CAFE_SEARCHES,
-        value
+        results
     }
 }
 
@@ -58,5 +59,12 @@ export function setIsSearchingCafes(value) {
         type: SET_IS_SEARCHING,
         value
     }
+}
+
+export function  showDetailedView(shouldShow) {
+    return {
+        type: SHOW_DETAILED_VIEW,
+        shouldShow
+    } 
 }
 

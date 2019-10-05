@@ -1,41 +1,27 @@
 import {
     loadNearByCafes, saveNearByCafes, errorSavingNearByCafes,
     loadNearByCafeSearches, saveNearByCafeSearches, errorSavingNearByCafeSearches,
-    setIsSearchingCafes
+    setIsSearchingCafes, showDetailedView
 } from './action';
 
-function buildUrl(url, parameters) {
-    let qs = "";
-    for (const key in parameters) {
-        if (parameters.hasOwnProperty(key)) {
-            const value = parameters[key];
-            qs +=
-                encodeURIComponent(key) + "=" + encodeURIComponent(value) + "&";
-        }
-    }
-    if (qs.length > 0) {
-        qs = qs.substring(0, qs.length - 1); //chop off last "&"
-        url = url + "?" + qs;
-    }
-
-    return url;
-}
+import { buildUrl } from '../../../../../utils/urlHelper'
 
 
 export function getNearByCafes() {
     return async dispatch => {
         dispatch(loadNearByCafes());
+        var params = {
+            location: "-33.8670522, 151.1957362",
+            radius: 1500,
+            type: "cafe",
+            keyword: "coffee",
+            key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
+        }
         fetch(
-            buildUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json", {
-                location: "-33.8670522, 151.1957362",
-                radius: 1500,
-                type: "cafe",
-                keyword: "coffee",
-                key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
-            }))
+            buildUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json", params))
             .then(response => response.json())
             .then((responseJson) => {
-                dispatch(saveNearByCafes(responseJson));
+                dispatch(saveNearByCafes(responseJson.results));
             })
             .catch(error => {
                 errorSavingNearByCafes(error)
@@ -44,21 +30,22 @@ export function getNearByCafes() {
 }
 
 
-export function searchNearByCafes(query) {
+export function searchNearByCafes(query, nextpageToken) {
     return async dispatch => {
         dispatch(loadNearByCafeSearches());
+        var params = {
+            location: "-33.8670522, 151.1957362",
+            radius: 1500,
+            type: "cafe",
+            keyword: "coffee",
+            key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
+            name: query
+        }
         fetch(
-            buildUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json", {
-                location: "-33.8670522, 151.1957362",
-                radius: 1500,
-                type: "cafe",
-                keyword: "coffee",
-                key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
-                name: query
-            }))
+            buildUrl("https://maps.googleapis.com/maps/api/place/nearbysearch/json", params))
             .then(response => response.json())
             .then((responseJson) => {
-                dispatch(saveNearByCafeSearches(responseJson));
+                dispatch(saveNearByCafeSearches(responseJson.results));
             })
             .catch(error => {
                 errorSavingNearByCafeSearches(error)
@@ -66,9 +53,14 @@ export function searchNearByCafes(query) {
     }
 }
 
-
 export function isSearchingNearByCafes(isSearching) {
     return async dispatch => {
         dispatch(setIsSearchingCafes(isSearching));
+    }
+}
+
+export function shouldShowDetailedView(shouldShow) {
+    return async dispatch => {
+        dispatch(showDetailedView(shouldShow));
     }
 }

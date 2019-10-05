@@ -9,10 +9,8 @@ export default class Profile extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: "white" }}>
-                <Text>
-                    Profile
-                </Text>
+            <View style={{ flex: 1, backgroundColor: "transparent" }}>
+
             </View>
         )
     }

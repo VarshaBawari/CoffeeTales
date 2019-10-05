@@ -22,7 +22,8 @@ const persistConfig = {
         'authReducer',
         'userRegisterationReducer',
         'storyReducer',
-        'nearByCafeReducer'
+        'nearByCafeReducer',
+        'coffeePediaReducer'
     ],
     // Blacklist (Don't Save Specific Reducers)
     blacklist: [
