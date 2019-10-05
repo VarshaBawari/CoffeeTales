@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, View, Text, SafeAreaView, StatusBar, Animated, Dimensions, TextInput, TouchableOpacity, Image, ScrollView } from 'react-native';
+import { FlatList, View, Text, TextInput, Image, ScrollView } from 'react-native';
 import styles from './styles'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -25,12 +25,14 @@ class Home extends Component {
                 storiesList: nextProps.stories
             })
         }
-
     }
-    _handleTextReady = () => {
-        // ...
+    shouldComponentUpdate(nextProps) {
+        if (nextProps && nextProps.stories) {
+            return true
+        }
+        return false
     }
-    _keyExtractor = (item, index) => { "stories+" + index + "-" + item.name + Date() };
+    _keyExtractor = (item, index) => { "stories" + index };
     _renderTruncatedFooter = (handlePress) => {
         return (
             <Text style={{ color: "#335569", marginTop: 5, textAlign: "right", marginBottom: 15, fontWeight: "bold" }} onPress={handlePress}>
@@ -112,7 +114,7 @@ class Home extends Component {
                                             numberOfLines={5}
                                             renderTruncatedFooter={this._renderTruncatedFooter}
                                             renderRevealedFooter={this._renderRevealedFooter}
-                                            onReady={this._handleTextReady}>
+                                        >
                                             <Text style={{ textAlign: "justify" }}>
                                                 {item.story}
                                             </Text>

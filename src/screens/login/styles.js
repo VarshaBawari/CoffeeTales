@@ -69,4 +69,5 @@ export default styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "100"
     },
+    subContainer: { width: "100%" }
 });

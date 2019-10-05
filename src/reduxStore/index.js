@@ -3,14 +3,10 @@ import { AsyncStorage } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
-
 // Imports: Redux
 import rootReducer from '../reducers';
-
 // Middleware: Redux Thunk (Async/Await)
 const middleware = [thunk];
-
-
 // Middleware: Redux Persist Config
 const persistConfig = {
     // Root?

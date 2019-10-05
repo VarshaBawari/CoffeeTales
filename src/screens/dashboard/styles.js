@@ -67,4 +67,8 @@ export default styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "100"
     },
+    topBar: { height: 10, backgroundColor: "#335569", justifyContent: "center" },
+    subContainer: { flex: 1, marginTop: 20 },
+    tabIcon: { width: 20, height: 20, },
+    tabContainer: { flex: 1, backgroundColor: "transparent" }
 });

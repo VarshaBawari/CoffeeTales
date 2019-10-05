@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Text, SafeAreaView, StatusBar, Animated, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { ImageBackground, View, Text, SafeAreaView, StatusBar, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from './styles'
@@ -32,10 +32,8 @@ class LoginScreen extends Component {
             <ImageBackground source={require('../../assets/coffee_bg.jpg')} style={styles.backgroundImage}>
                 <SafeAreaView style={styles.container}>
                     <StatusBar barStyle="light-content" backgroundColor="transparent" translucent={true} />
-                    <View style={{ width: "100%" }}>
-                        <Text style={{ ...styles.titleLabel }}>
-                            CoffeeTales
-                        </Text>
+                    <View style={styles.subContainer}>
+                        <Text style={{ ...styles.titleLabel }}>CoffeeTales</Text>
                         <Text style={{ ...styles.subTitleLabel }}>
                             Celebrating the Joy of Coffee
                         </Text>
@@ -48,7 +46,7 @@ class LoginScreen extends Component {
                             value={this.state.userName} />
                         <TextInput
                             style={styles.input}
-                            placeholder={"Password same as Username"}
+                            placeholder={"Password"}
                             onChangeText={(text) => {
                                 this.setState({ password: text })
                             }}
@@ -56,33 +54,20 @@ class LoginScreen extends Component {
                         <View style={{ ...styles.submitBtn, backgroundColor: this.props.authenticating ? "#b88e72" : "#5e422f" }}>
 
                             <TouchableOpacity onPress={() => {
-                                // this.props.navigation.navigate('Info')
-                                this.props.navigation.navigate('Dashboard')
-
+                                this.props.navigation.replace('Dashboard')
                                 // this.props.authenticate(this.state.userName, this.state.password)
                             }} disabled={this.props.authenticating}>
-                                <Text style={styles.submitBtnLabel}>
-                                    Login
-                                            </Text>
+                                <Text style={styles.submitBtnLabel}>Login</Text>
                             </TouchableOpacity>
-
 
                         </View>
                         <TouchableOpacity onPress={() => {
-                            this.props.navigation.navigate('Registeration')
+                            // this.props.navigation.navigate('Registeration')
+                            this.props.navigation.replace('Dashboard')
                         }} >
-                            <Text style={styles.submitBtnLabel}>
-                                New User? Register now
-                                            </Text>
+                            <Text style={styles.submitBtnLabel}>New User? Register now</Text>
                         </TouchableOpacity>
-                        {
-                            this.props.authenticating &&
-                            <Text style={styles.submitBtnLabel}> ...</Text>
 
-                        }
-                        {/* <Text style={{ ...styles.submitBtnLabel, color: "red", fontSize: 12 }}>
-                            {this.state.authErrorMessage}
-                        </Text> */}
                     </View>
                 </SafeAreaView>
             </ImageBackground>

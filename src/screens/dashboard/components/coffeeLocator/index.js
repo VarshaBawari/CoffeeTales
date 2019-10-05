@@ -1,61 +1,58 @@
 import React, { Component } from 'react';
-import { ImageBackground, View, Text, SafeAreaView, StatusBar, Animated, Dimensions, TextInput, TouchableOpacity, Image, FlatList } from 'react-native';
-
+import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNearByCafes, shouldShowDetailedView } from './redux/dispatcher'
 import { buildUrl } from '../../../../utils/urlHelper'
-import { ScrollView } from 'react-native-gesture-handler';
 import { AirbnbRating } from 'react-native-ratings';
-const COFFEE_IMAGE = require('../../../../assets/coffee_beans.png')
 import DetailedView from './detailedView'
 import ProgressiveImage from '../../../../components/progressiveImage'
-
+import styles from "./styles"
+import { API, API_KEY } from "../../../../constants"
 class CoffeeLocator extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nearByCafes: this.props.nearByCafes,
-            // showDetailedView: this.props.showDetailedView
             selectedItem: null,
         }
-
     }
     componentDidMount() {
         this.props.getNearByCafes()
     }
-    _keyExtractor = (item, index) => { item.id };
+    shouldComponentUpdate(nextProps) {
+        if (nextProps && nextProps.nearByCafes) {
+            return true
+        }
+        return false
+    }
     componentWillReceiveProps(nextProps) {
         if (nextProps && nextProps.nearByCafes) {
             this.setState({
                 nearByCafes: nextProps.nearByCafes
             })
         }
-
     }
+    _keyExtractor = (item, index) => { item.id };
 
     render() {
         return (
-            <View style={{ flex: 1, backgroundColor: "transparent", }}>
-
-
-                <FlatList style={{ backgroundColor: "transparent", marginVertical: 20, marginHorizontal: 20 }}
+            <View style={{ ...styles.tabContainer }}>
+                <FlatList style={{ ...styles.listContainer }}
                     data={this.state.nearByCafes}
                     keyExtractor={(this._keyExtractor.bind(this))}
                     initialNumToRender={2}
                     renderItem={({ item }) => {
                         var uri = ""
                         if (item.photos && item.photos.length > 0) {
-                            uri = buildUrl("https://maps.googleapis.com/maps/api/place/photo", {
+                            uri = buildUrl(API.PLACE_PHOTO, {
                                 photoreference: item.photos[0].photo_reference,
                                 maxwidth: 400,
-                                key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
+                                key: API_KEY.GOOGLE_PLACES,
                             })
-
                         }
-
                         return (
-                            <View style={{ backgroundColor: "white", marginBottom: 20, borderRadius: 10, }}>
+                            <View style={{ ...styles.itemContainer }}>
                                 <TouchableOpacity onPress={() => {
                                     this.setState({
                                         selectedItem: item
@@ -63,30 +60,28 @@ class CoffeeLocator extends Component {
                                     this.props.shouldShowDetailedView(true)
                                 }}>
                                     <View style={{ flexDirection: "row" }}>
-                                        <ProgressiveImage style={{ width: 115, height: 115, borderTopLeftRadius: 10, borderBottomLeftRadius: 10, }}
+                                        <ProgressiveImage style={{ ...styles.locationImage }}
                                             uri={uri}
                                         />
-                                        <View style={{ flex: 1, marginLeft: 15, marginRight: 15, height: 115 }}>
+                                        <View style={{ ...styles.dataContainer }}>
                                             {
                                                 item.name &&
                                                 <Text
                                                     numberOfLines={1}
-                                                    style={{ fontWeight: "bold", fontSize: 16, color: "#335569", paddingTop: 10 }}>
+                                                    style={{ ...styles.title }}>
                                                     {item.name}
                                                 </Text>
                                             }
 
                                             {
                                                 item.rating &&
-                                                <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, }}>
-                                                    <Text style={{ fontSize: 14, color: "black", marginRight: 5 }}>
+                                                <View style={{ ...styles.ratingContainer }}>
+                                                    <Text style={{ ...styles.ratingText }}>
                                                         {item.rating}
                                                     </Text>
                                                     <AirbnbRating
                                                         starContainerStyle={{
-                                                            alignSelf: "flex-start",
-                                                            backgroundColor: "transparent",
-                                                            marginRight: 5
+                                                            ...styles.ratingInnerContainer
                                                         }}
                                                         size={15}
                                                         isDisabled={true}
@@ -95,7 +90,7 @@ class CoffeeLocator extends Component {
                                                     />
                                                     {
                                                         item.user_ratings_total &&
-                                                        <Text style={{ fontSize: 12, color: "black" }}>
+                                                        <Text style={{ ...styles.ratingLabel }}>
                                                             {"(" + item.user_ratings_total + ")"}
                                                         </Text>
                                                     }
@@ -105,7 +100,7 @@ class CoffeeLocator extends Component {
 
                                             {
                                                 item.vicinity &&
-                                                <Text style={{ fontSize: 12, color: "black", paddingTop: 5 }} numberOfLines={1}>
+                                                <Text style={{ ...styles.ratingLabel, paddingTop: 5 }} numberOfLines={1}>
                                                     {item.vicinity}
                                                 </Text>
                                             }
@@ -117,18 +112,12 @@ class CoffeeLocator extends Component {
                                                 </Text>
                                             }
 
-
                                         </View>
                                     </View>
-
                                 </TouchableOpacity>
-
                             </View>
-
-
                         )
-                    }
-                    }
+                    }}
                 />
                 {this.props.showDetailedView && this.state.selectedItem &&
                     <DetailedView isVisible={this.props.showDetailedView} data={this.state.selectedItem} />

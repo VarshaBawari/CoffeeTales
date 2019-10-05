@@ -10,6 +10,8 @@ import { AirbnbRating } from 'react-native-ratings';
 import Modal from "react-native-modal";
 import { buildUrl } from '../../../../../utils/urlHelper'
 import ProgressiveImage from '../../../../../components/progressiveImage'
+import styles from "./styles"
+import { API, API_KEY } from '../../../../../constants'
 
 class DetailedView extends Component {
     constructor(props) {
@@ -18,43 +20,41 @@ class DetailedView extends Component {
     render() {
         var uri = ""
         if (this.props.data && this.props.data.photos && this.props.data.photos.length > 0) {
-            uri = buildUrl("https://maps.googleapis.com/maps/api/place/photo", {
+            uri = buildUrl(API.PLACE_PHOTO, {
                 photoreference: this.props.data.photos[0].photo_reference,
                 maxwidth: 400,
-                key: "AIzaSyB3_Mmv6rtaEs_p6-UCc9Dr2g1F907hmQ0",
+                key: API_KEY.GOOGLE_PLACES,
             })
 
         }
 
         return (
-            <View style={{ flex: 1, backgroundColor: "white", alignItems: "flex-end" }}>
+            <View style={{ ...styles.container }}>
                 <Modal isVisible={this.props.isVisible}>
-                    <View style={{ flex: 1, backgroundColor: "white", borderTopLeftRadius: 10, borderTopRightRadius: 10, }}>
+                    <View style={{ ...styles.innerContainer }}>
 
                         <ScrollView>
 
-                            <ProgressiveImage style={{ width: "100%", height: 250, borderTopLeftRadius: 10, borderTopRightRadius: 10, }}
+                            <ProgressiveImage style={{ ...styles.imagebanner }}
                                 uri={uri}
                             />
-                            <View style={{ marginRight: 15, marginLeft: 15, marginTop: 15 }}>
+                            <View style={{ ...styles.dataContainer }}>
                                 {
                                     this.props.data.name &&
                                     <Text
-                                        style={{ fontWeight: "bold", fontSize: 16, color: "#335569", paddingTop: 10 }}>
+                                        style={{ ...styles.title }}>
                                         {this.props.data.name}
                                     </Text>
                                 }
                                 {
                                     this.props.data.rating &&
-                                    <View style={{ flexDirection: "row", alignItems: "center", marginTop: 5, }}>
-                                        <Text style={{ fontSize: 14, color: "black", marginRight: 5 }}>
+                                    <View style={{ ...styles.ratingContainer }}>
+                                        <Text style={{ ...styles.ratingText }}>
                                             {this.props.data.rating}
                                         </Text>
                                         <AirbnbRating
                                             starContainerStyle={{
-                                                alignSelf: "flex-start",
-                                                backgroundColor: "transparent",
-                                                marginRight: 5
+                                                ...styles.ratingInnerContainer
                                             }}
                                             size={15}
                                             isDisabled={true}
@@ -63,7 +63,7 @@ class DetailedView extends Component {
                                         />
                                         {
                                             this.props.data.user_ratings_total &&
-                                            <Text style={{ fontSize: 12, color: "black" }}>
+                                            <Text style={{ ...styles.ratingLabel }}>
                                                 {"(" + this.props.data.user_ratings_total + ")"}
                                             </Text>
                                         }
@@ -73,7 +73,7 @@ class DetailedView extends Component {
 
                                 {
                                     this.props.data.vicinity &&
-                                    <Text style={{ fontSize: 12, color: "black", paddingTop: 5 }} numberOfLines={1}>
+                                    <Text style={{ ...styles.ratingLabel, paddingTop: 5 }} numberOfLines={1}>
                                         {this.props.data.vicinity}
                                     </Text>
                                 }
@@ -86,27 +86,21 @@ class DetailedView extends Component {
                                 }
                             </View>
                             <WebView
-                                source={{ uri: 'https://www.google.com/maps/@?api=1&map_action=map&center=' + this.props.data.geometry.location.lat + ',' + this.props.data.geometry.location.lng + '&zoom=100' }}
-                                style={{ marginTop: 20, height: 250, width: "100%" }}
+                                source={{ uri: API.MAP + this.props.data.geometry.location.lat + ',' + this.props.data.geometry.location.lng + '&zoom=100' }}
+                                style={{ ...styles.webView }}
                             />
 
                         </ScrollView>
-                        <View style={{ position: "absolute", right: 0, top: 0, backgroundColor: "rgba(0,0,0,0.5)", width: "100%" }}>
+                        <View style={{ ...styles.bar }}>
                             <TouchableOpacity onPress={() => {
                                 this.props.shouldShowDetailedView(false)
                             }}>
                                 <Image source={require("../../../../../assets/close_btn.png")} style={{
-                                    alignSelf: "flex-end", width: 30, height: 30, marginTop: 15, marginRight: 15,
-                                    tintColor: "white"
-
+                                    ...styles.closeIcon
                                 }} />
                             </TouchableOpacity>
 
                         </View>
-
-
-
-
                     </View>
                 </Modal>
 
@@ -115,8 +109,6 @@ class DetailedView extends Component {
         )
     }
 }
-
-
 
 const mapStateToProps = (state) => {
     return {
