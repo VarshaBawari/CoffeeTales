@@ -161,7 +161,9 @@ class AddressComponent extends Component {
                                                     })
                                                 })
                                                 .catch(error => {
-                                                    alert("Unable to fetch results for your location" + error.message)
+                                                    alert("Unable to fetch results for your location. " + error.message + ". Showing default results")
+                                                    this.props.locationSelected("Germany", "Munich", "48.1351", "11.5820")
+
                                                     this.setState({
                                                         isLoading: false
                                                     })

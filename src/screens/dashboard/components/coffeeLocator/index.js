@@ -42,6 +42,9 @@ class CoffeeLocator extends Component {
     render() {
         return (
             <View style={{ ...styles.tabContainer }}>
+                <Text style={{ ...styles.ratingText, color: "white", marginLeft: 20, marginTop: 20, marginBottom: 10 }}>
+                    {"Showing near by cafes in " + this.props.selctedCity + "," + this.props.selectedCountry}
+                </Text>
                 <FlatList style={{ ...styles.listContainer }}
                     data={this.state.nearByCafes}
                     keyExtractor={(this._keyExtractor.bind(this))}
@@ -138,6 +141,8 @@ const mapStateToProps = (state) => {
         showDetailedView: state.nearByCafeReducer.showDetailedView,
         lat: state.locationReducer.lat,
         lng: state.locationReducer.lng,
+        selectedCountry: state.locationReducer.selectedCountry,
+        selctedCity: state.locationReducer.selctedCity,
     }
 }
 
