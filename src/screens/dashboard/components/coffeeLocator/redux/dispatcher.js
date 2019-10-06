@@ -7,11 +7,11 @@ import {
 import { buildUrl } from '../../../../../utils/urlHelper'
 import { API, API_KEY } from '../../../../../constants'
 
-export function getNearByCafes() {
+export function getNearByCafes(lat, lng) {
     return async dispatch => {
         dispatch(loadNearByCafes());
         var params = {
-            location: "-33.8670522, 151.1957362",
+            location: lat + "," + lng,
             radius: 1500,
             type: "cafe",
             keyword: "coffee",

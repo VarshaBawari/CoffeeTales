@@ -54,7 +54,10 @@ class LoginScreen extends Component {
                         <View style={{ ...styles.submitBtn, backgroundColor: this.props.authenticating ? "#b88e72" : "#5e422f" }}>
 
                             <TouchableOpacity onPress={() => {
-                                this.props.navigation.replace('Dashboard')
+                                this.props.navigation.replace('AddressComponent')
+
+
+                                // this.props.navigation.replace('Dashboard')
                                 // this.props.authenticate(this.state.userName, this.state.password)
                             }} disabled={this.props.authenticating}>
                                 <Text style={styles.submitBtnLabel}>Login</Text>
@@ -62,8 +65,8 @@ class LoginScreen extends Component {
 
                         </View>
                         <TouchableOpacity onPress={() => {
-                            // this.props.navigation.navigate('Registeration')
-                            this.props.navigation.replace('Dashboard')
+                            this.props.navigation.replace('AddressComponent')
+                            // this.props.navigation.replace('Dashboard')
                         }} >
                             <Text style={styles.submitBtnLabel}>New User? Register now</Text>
                         </TouchableOpacity>

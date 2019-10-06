@@ -30,8 +30,6 @@ export function errorSavingNearByCafes(value) {
 }
 
 
-
-
 export function loadNearByCafeSearches() {
     return {
         type: GET_NEAR_BY_CAFE_SEARCHES,

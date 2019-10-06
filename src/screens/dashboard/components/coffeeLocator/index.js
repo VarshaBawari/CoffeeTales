@@ -9,6 +9,7 @@ import DetailedView from './detailedView'
 import ProgressiveImage from '../../../../components/progressiveImage'
 import styles from "./styles"
 import { API, API_KEY } from "../../../../constants"
+
 class CoffeeLocator extends Component {
     constructor(props) {
         super(props);
@@ -18,10 +19,13 @@ class CoffeeLocator extends Component {
         }
     }
     componentDidMount() {
-        this.props.getNearByCafes()
+        this.props.getNearByCafes(this.props.lat, this.props.lng)
     }
     shouldComponentUpdate(nextProps) {
         if (nextProps && nextProps.nearByCafes) {
+            return true
+        }
+        if (nextProps && nextProps.lat) {
             return true
         }
         return false
@@ -51,6 +55,15 @@ class CoffeeLocator extends Component {
                                 key: API_KEY.GOOGLE_PLACES,
                             })
                         }
+
+
+                        var rating = ""
+                        if (item.rating != "") {
+                            rating = item.rating
+                        }
+                        console.log('=====rating===============================');
+                        console.log(rating);
+                        console.log('====================================');
                         return (
                             <View style={{ ...styles.itemContainer }}>
                                 <TouchableOpacity onPress={() => {
@@ -65,38 +78,30 @@ class CoffeeLocator extends Component {
                                         />
                                         <View style={{ ...styles.dataContainer }}>
                                             {
-                                                item.name &&
-                                                <Text
-                                                    numberOfLines={1}
-                                                    style={{ ...styles.title }}>
-                                                    {item.name}
-                                                </Text>
+                                                item.name && <Text numberOfLines={1} style={{ ...styles.title }}>{item.name}</Text>
                                             }
+                                            <View>
+                                                {
+                                                    item.rating &&
+                                                    <View style={styles.ratingContainer}>
+                                                        <Text style={{ ...styles.ratingText }}>{item.rating}</Text>
+                                                        <AirbnbRating
+                                                            starContainerStyle={styles.ratingInnerContainer}
+                                                            size={15}
+                                                            isDisabled={true}
+                                                            showRating={false}
+                                                            defaultRating={item.rating}
+                                                        />
+                                                        {
+                                                            item.user_ratings_total &&
+                                                            <Text style={{ ...styles.ratingLabel }}>
+                                                                {"(" + item.user_ratings_total + ")"}
+                                                            </Text>
+                                                        }
+                                                    </View>
+                                                }
 
-                                            {
-                                                item.rating &&
-                                                <View style={{ ...styles.ratingContainer }}>
-                                                    <Text style={{ ...styles.ratingText }}>
-                                                        {item.rating}
-                                                    </Text>
-                                                    <AirbnbRating
-                                                        starContainerStyle={{
-                                                            ...styles.ratingInnerContainer
-                                                        }}
-                                                        size={15}
-                                                        isDisabled={true}
-                                                        showRating={false}
-                                                        defaultRating={item.rating}
-                                                    />
-                                                    {
-                                                        item.user_ratings_total &&
-                                                        <Text style={{ ...styles.ratingLabel }}>
-                                                            {"(" + item.user_ratings_total + ")"}
-                                                        </Text>
-                                                    }
-                                                </View>
-
-                                            }
+                                            </View>
 
                                             {
                                                 item.vicinity &&
@@ -139,7 +144,9 @@ const mapStateToProps = (state) => {
         searchedNearByCafes: state.nearByCafeReducer.searchedNearByCafes,
         errorMessageNearByCafeSearch: state.nearByCafeReducer.errorMessageNearByCafeSearch,
         next_page_token: state.nearByCafeReducer.next_page_token,
-        showDetailedView: state.nearByCafeReducer.showDetailedView
+        showDetailedView: state.nearByCafeReducer.showDetailedView,
+        lat: state.locationReducer.lat,
+        lng: state.locationReducer.lng,
     }
 }
 
