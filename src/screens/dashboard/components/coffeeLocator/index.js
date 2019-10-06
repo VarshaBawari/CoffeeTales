@@ -55,15 +55,6 @@ class CoffeeLocator extends Component {
                                 key: API_KEY.GOOGLE_PLACES,
                             })
                         }
-
-
-                        var rating = ""
-                        if (item.rating != "") {
-                            rating = item.rating
-                        }
-                        console.log('=====rating===============================');
-                        console.log(rating);
-                        console.log('====================================');
                         return (
                             <View style={{ ...styles.itemContainer }}>
                                 <TouchableOpacity onPress={() => {
