@@ -20,3 +20,8 @@ Incomplete Functionalities-
 - Review a cafe
 - handling user's realtime locations
 - Loader Images 
+
+Android APK Link-
+
+https://github.com/VarshaBawari/CoffeeTales/blob/master/android/app/release/CoffeeTales.apk
+
