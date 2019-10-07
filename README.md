@@ -22,6 +22,6 @@ Incomplete Functionalities-
 - Loader Images 
 
 Android APK Link-
+https://github.com/VarshaBawari/CoffeeTales/blob/master/builds/CoffeeTales.apk
 
-https://github.com/VarshaBawari/CoffeeTales/blob/master/android/app/release/CoffeeTales.apk
 
