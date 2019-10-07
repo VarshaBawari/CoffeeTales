@@ -32,7 +32,7 @@ Challenges faced(Extra time consumed)-
 Native Components-
 - Designed a simple native component for loading list of Countries and their respective Cities from a JSON file for both iOS and Android
 
-Android APK Link-
+Android APK Link (recommended)-
 https://github.com/VarshaBawari/CoffeeTales/blob/master/builds/CoffeeTales.apk
 
 iOS video link (Didn't get time to fix iOS specific issues)-
