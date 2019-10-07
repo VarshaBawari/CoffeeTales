@@ -8,6 +8,7 @@ It also allows user to locate ad find any near by Cafe and read some facts about
 
 Added Features-
 - Works in Offline mode using Redux and AsyncStorage
+- Shows real data from Google for near by Cafes (using Google places API)
 
 Incomplete Functionalities-
 - Network handling and showing proper error messages
@@ -21,7 +22,19 @@ Incomplete Functionalities-
 - handling user's realtime locations
 - Loader Images 
 
+Challenges faced(Extra time consumed)-
+- Incompatible dependencies with latest react-native version (had to use react native version 0.59.9)
+- Network connectivity
+- Other react-native issues like "Invariant Violation", linking issues
+- Poor laptop performance while working simultaneously with both Android Studio and XCode. Had to work on 2 different machines(Luckily I had 2)
+
+Native Components-
+- Designed a simple native component for loading list of Countries and their respective Cities from a JSON file for both iOS and Android
+
 Android APK Link-
 https://github.com/VarshaBawari/CoffeeTales/blob/master/builds/CoffeeTales.apk
+
+iOS video link (Didn't get time to fix iOS specific issues)-
+https://github.com/VarshaBawari/CoffeeTales/blob/master/builds/iphone8.mp4
 
 
