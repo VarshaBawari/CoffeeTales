@@ -21,6 +21,7 @@ Incomplete Functionalities-
 - Review a cafe
 - handling user's realtime locations
 - Loader Images 
+- Wanted to break down all the components into more smaller components
 
 Challenges faced(Extra time consumed)-
 - Incompatible dependencies with latest react-native version (had to use react native version 0.59.9)
