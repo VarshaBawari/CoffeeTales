@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../constants'
 export default styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: COLORS.BLACK_VARIANT,
     },
     backgroundImage: {
         resizeMode: 'cover',
@@ -46,7 +47,7 @@ export default styles = StyleSheet.create({
         textAlignVertical: "top"
     },
     submitBtn: {
-        backgroundColor: "#5e422f",
+        backgroundColor: COLORS.COFFEE_BROWN,
         height: 55,
         marginVertical: 30,
         marginHorizontal: 40,
@@ -67,7 +68,7 @@ export default styles = StyleSheet.create({
         textAlign: "center",
         fontWeight: "100"
     },
-    topBar: { height: 10, backgroundColor: "#335569", justifyContent: "center" },
+    topBar: { height: 10, backgroundColor: COLORS.DARK_TEAL, justifyContent: "center" },
     subContainer: { flex: 1, marginTop: 20 },
     tabIcon: { width: 20, height: 20, },
     tabContainer: { flex: 1, backgroundColor: "transparent" }

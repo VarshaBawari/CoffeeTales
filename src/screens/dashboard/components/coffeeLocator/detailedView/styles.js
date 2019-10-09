@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../../../../constants'
 export default styles = StyleSheet.create({
     container: { flex: 1, backgroundColor: "white", alignItems: "flex-end" },
     innerContainer: { flex: 1, backgroundColor: "white", borderTopLeftRadius: 10, borderTopRightRadius: 10, },
     imagebanner: { width: "100%", height: 250, borderTopLeftRadius: 10, borderTopRightRadius: 10, },
     dataContainer: { marginRight: 15, marginLeft: 15, marginTop: 15 },
-    title: { fontWeight: "bold", fontSize: 16, color: "#335569", paddingTop: 10 },
+    title: { fontWeight: "bold", fontSize: 16, color: COLORS.DARK_TEAL, paddingTop: 10 },
     ratingContainer: { flexDirection: "row", alignItems: "center", marginTop: 5, },
     ratingText: { fontSize: 14, color: "black", marginRight: 5 },
     ratingInnerContainer: {

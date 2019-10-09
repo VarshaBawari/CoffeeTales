@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styles from './styles'
 import { authenticate, clearPreviousAuthError } from './redux/dispatcher'
+import { COLORS } from '../../constants'
 
 class LoginScreen extends Component {
     constructor(props) {
@@ -51,7 +52,7 @@ class LoginScreen extends Component {
                                 this.setState({ password: text })
                             }}
                             value={this.state.password} />
-                        <View style={{ ...styles.submitBtn, backgroundColor: this.props.authenticating ? "#b88e72" : "#5e422f" }}>
+                        <View style={{ ...styles.submitBtn, backgroundColor: this.props.authenticating ? COLORS.LIGHT_COFFEE_BROWN : COLORS.COFFEE_BROWN }}>
 
                             <TouchableOpacity onPress={() => {
                                 this.props.navigation.replace('AddressComponent')

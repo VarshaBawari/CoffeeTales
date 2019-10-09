@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import { locationSelected } from './redux/dispatcher'
 import styles from './styles'
 import Geocoder from 'react-native-geocoding';
-import { API, API_KEY } from "../../constants"
+import { API, API_KEY, COLORS } from "../../constants"
 
 class AddressComponent extends Component {
     constructor(props) {
@@ -143,7 +143,7 @@ class AddressComponent extends Component {
                             }
                             {
                                 this.state.selectedCountry != "" && this.state.selectedCity != "" &&
-                                <View style={{ ...styles.submitBtn, backgroundColor: this.props.isLoading ? "#b88e72" : "#5e422f" }}>
+                                <View style={{ ...styles.submitBtn, backgroundColor: this.props.isLoading ? COLORS.LIGHT_COFFEE_BROWN : COLORS.COFFEE_BROWN }}>
 
                                     <TouchableOpacity
                                         disabled={this.state.isLoading}

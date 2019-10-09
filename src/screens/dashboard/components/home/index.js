@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getStories } from './redux/dispatcher'
 import ReadMore from 'react-native-read-more-text';
+import { COLORS } from '../../../../constants'
 
 class Home extends Component {
     constructor(props) {
@@ -35,7 +36,7 @@ class Home extends Component {
     _keyExtractor = (item, index) => { "stories" + index };
     _renderTruncatedFooter = (handlePress) => {
         return (
-            <Text style={{ color: "#335569", marginTop: 5, textAlign: "right", marginBottom: 15, fontWeight: "bold" }} onPress={handlePress}>
+            <Text style={{ color: COLORS.DARK_TEAL, marginTop: 5, textAlign: "right", marginBottom: 15, fontWeight: "bold" }} onPress={handlePress}>
                 Read more
       </Text>
         );
@@ -43,7 +44,7 @@ class Home extends Component {
 
     _renderRevealedFooter = (handlePress) => {
         return (
-            <Text style={{ color: "#335569", marginTop: 5, marginBottom: 15, textAlign: "right", fontWeight: "bold" }} onPress={handlePress}>
+            <Text style={{ color: COLORS.DARK_TEAL, marginTop: 5, marginBottom: 15, textAlign: "right", fontWeight: "bold" }} onPress={handlePress}>
                 Show less
       </Text>
         );
